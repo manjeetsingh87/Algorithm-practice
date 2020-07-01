@@ -1,5 +1,6 @@
 package com.locationlabs.stuff;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,11 +11,26 @@ import java.util.Stack;
  */
 public class FlattenNestedListIterator implements Iterator<Integer> {
 
+   class NestedInteger {
+      int val ;
+      boolean isInteger() {
+         return true;
+      }
+
+      List<NestedInteger> getList() {
+         return new ArrayList<>();
+      }
+      int getInteger() {
+         return 0;
+      }
+   }
+
    private List<Integer> flattenedList;
    private Iterator<Integer> itr;
 
-/*   public FlattenNestedListIterator(List<NestedInteger> nestedList) {
+   public FlattenNestedListIterator(List<NestedInteger> nestedList) {
       flattenedList = new LinkedList<>();
+      flattenNestedList(nestedList);
       itr = flattenedList.iterator();
    }
 
@@ -26,7 +42,7 @@ public class FlattenNestedListIterator implements Iterator<Integer> {
             flattenNestedList(nInt.getList());
          }
       }
-   }*/
+   }
 
    @Override
    public Integer next() {

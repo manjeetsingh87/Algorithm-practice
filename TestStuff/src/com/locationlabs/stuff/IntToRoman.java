@@ -67,7 +67,8 @@ public class IntToRoman {
    }
 
    public static void main(String[] args) {
-      System.out.println(intToRoman(120));
-      System.out.println(romanToInt("CXX"));
+      System.out.println(intToRoman(8));
+//      System.out.println(romanToInt("CXX"));
+//      System.out.println(romanToInt("MCMXCIV"));
    }
 }

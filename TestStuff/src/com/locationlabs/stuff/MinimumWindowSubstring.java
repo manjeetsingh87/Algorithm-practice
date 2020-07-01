@@ -57,7 +57,7 @@ public class MinimumWindowSubstring {
 
    public static void main(String[] args) {
       minWindow("ADOBECODEBANC", "ABC");
-      minWindow("aghaghbc", "abc");
-      minWindow("aghaghb", "abc");
+      /*minWindow("aghaghbc", "abc");
+      minWindow("aghaghb", "abc");*/
    }
 }

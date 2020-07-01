@@ -30,6 +30,6 @@ public class MyCalendarI {
       final MyCalendarI calendar = new MyCalendarI();
       System.out.println(calendar.book(10, 20));
       System.out.println(calendar.book(15, 25));
-      System.out.println(calendar.book(20, 30));
+      System.out.println(calendar.book(20, 28));
    }
 }

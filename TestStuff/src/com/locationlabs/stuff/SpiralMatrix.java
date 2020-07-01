@@ -1,6 +1,7 @@
 package com.locationlabs.stuff;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -57,12 +58,60 @@ public class SpiralMatrix {
       return result;
    }
 
+   private static int[][] generateMatrix(int n) {
+      if (n <= 0) {
+         return null;
+      }
+
+      int[][] matrix = new int[n][n];
+      int rowStart = 0, rowEnd = n - 1;
+      int colStart = 0, colEnd = n - 1;
+      int num = 1; // initial value at {0, 0) cell
+
+      while (rowStart <= rowEnd && colStart <= colEnd) {
+         // go right
+         for (int i = colStart; i <= colEnd; i++) {
+            matrix[rowStart][i] = num++;
+         }
+         rowStart++;
+
+         // go down
+         for (int i = rowStart; i <= rowEnd; i++) {
+            matrix[i][rowEnd] = num++;
+         }
+         colEnd--;
+
+         // go left
+         if (rowStart <= rowEnd) {
+            for (int i = colEnd; i >= colStart; i--) {
+               matrix[rowEnd][i] = num++;
+            }
+         }
+         rowEnd--;
+
+         //go up
+         if (colStart <= colEnd) {
+            for (int i = rowEnd; i >= rowStart; i--) {
+               matrix[i][colStart] = num++;
+            }
+         }
+         colStart++;
+      }
+
+      return matrix;
+   }
+
    public static void main(String[] args) {
-      int[][] matrix = {{1,2,3}, {4,5,6}, {7,8,9}};
+      /*int[][] matrix = {{1,2,3}, {4,5,6}, {7,8,9}};
       System.out.println(spiralOrder(matrix));
 
       int[][] matrix2 = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};
-      System.out.println(spiralOrder(matrix2));
+      System.out.println(spiralOrder(matrix2));*/
+
+      int[][] result = generateMatrix(3);
+      for (int[] row : result) {
+         System.out.println(Arrays.toString(row));
+      }
    }
 
 }

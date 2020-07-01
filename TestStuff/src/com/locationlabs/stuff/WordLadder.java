@@ -26,6 +26,7 @@ public class WordLadder {
 
       while (!visitedWords.contains(endWord)) {
          Set<String> permuteSet = new HashSet<>();
+
          for (String word : visitedWords) {
             for (int i = 0; i < word.length(); i++) {
                char[] chars = word.toCharArray();
@@ -39,9 +40,11 @@ public class WordLadder {
                }
             }
          }
+
          if (permuteSet.isEmpty()) {
             return 0;
          }
+
          distance++;
          visitedWords = permuteSet;
       }

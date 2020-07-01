@@ -21,7 +21,7 @@ public class TopVotedCandidate {
          if (map.isEmpty() || count[winner] <= count[person]) {
             winner = person;
          }
-         map.put(times[i], person);
+         map.put(times[i], winner);
       }
    }
 

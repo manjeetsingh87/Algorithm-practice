@@ -128,12 +128,12 @@ public class BestTimeToBuySellStock {
       System.out.println(maxProfitII(new int[]{7,1,5,3,6,4}));
       System.out.println(maxProfitII(new int[]{1,2,3,4,5}));*/
 
-      /*System.out.println(buySellWithCoolDown(new int[]{1,2,3,0,2}));
-      System.out.println(buySellWithCoolDownAppraoch2(new int[]{1,2,3,0,2}));*/
+      System.out.println(buySellWithCoolDown(new int[]{1,2,3,0,2}));
+      /*System.out.println(buySellWithCoolDownAppraoch2(new int[]{1,2,3,0,2}));*/
 
-      System.out.println(buySellIII(new int[]{3,3,5,0,0,3,1,4}));
+      /*System.out.println(buySellIII(new int[]{3,3,5,0,0,3,1,4}));
       System.out.println(buySellIII(new int[]{1,2,3,4,5}));
-      System.out.println(buySellIII(new int[]{7,6,4,3,1}));
+      System.out.println(buySellIII(new int[]{7,6,4,3,1}));*/
 
       /*System.out.println(buySellIV(new int[]{2, 4, 1}, 2));
       System.out.println(buySellIV(new int[]{3,2,6,5,0,3}, 2));*/

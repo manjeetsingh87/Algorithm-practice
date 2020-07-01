@@ -19,9 +19,9 @@ public class RemoveNthNodeFromEnd {
       }
 
       ListNode dummy = new ListNode(0);
+      dummy.next = head;
       ListNode slow = dummy;
       ListNode fast = dummy;
-      slow.next = head;
 
       // move fast to nth position
       for (int i = 0 ; i<= n; i++) {

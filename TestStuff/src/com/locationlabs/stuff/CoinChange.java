@@ -11,21 +11,21 @@ public class CoinChange {
          return 0;
       }
 
-      int[] minCoins = new int[amount + 1];
-      Arrays.fill(minCoins, Integer.MAX_VALUE);
-      minCoins[0] = 0;
+      int[] dp = new int[amount + 1];
+      Arrays.fill(dp, Integer.MAX_VALUE);
+      dp[0] = 0;
 
       for (int sum = 1; sum <= amount; sum++) {
          for (int coin : coins) {
             // if the current coin is more than sum,
             // or there was no possible way to make the remaining amount wwhen we're trying to use this coin.
-            if (coin <= sum && minCoins[sum - coin] != Integer.MAX_VALUE) {
-               minCoins[sum] = Math.min(minCoins[sum],
-                       1 + minCoins[sum - coin]);
+            if (coin <= sum && dp[sum - coin] != Integer.MAX_VALUE) {
+               dp[sum] = Math.min(dp[sum],
+                       1 + dp[sum - coin]);
             }
          }
       }
-      return minCoins[amount] == Integer.MAX_VALUE ? -1 : minCoins[amount];
+      return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
    }
 
    public static void main(String[] args) {

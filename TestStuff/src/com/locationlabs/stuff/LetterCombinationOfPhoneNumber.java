@@ -33,15 +33,19 @@ public class LetterCombinationOfPhoneNumber {
    }
 
    private static void backtrack(List<String> result, String combination, String nextDigits) {
-      if (nextDigits.length() == 0) {
+      if (nextDigits.isEmpty()) {
          result.add(combination);
          return;
       }
 
       String digit = nextDigits.substring(0, 1);
+      if (!numberLetterMap.containsKey(digit)) {
+         return;
+      }
+
       String letters = numberLetterMap.get(digit);
-      for (char letter : letters.toCharArray()) {
-         backtrack(result, combination+letter, nextDigits.substring(1));
+      for (char ch : letters.toCharArray()) {
+         backtrack(result, combination + ch, nextDigits.substring(1));
       }
    }
 

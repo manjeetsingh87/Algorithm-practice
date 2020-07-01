@@ -11,7 +11,7 @@ public class Subsets {
    // given a list of integers, find all possible subsets.
    // eg nums = [1,2,3]
    //output: [[1], [2], [3], [1,2], [1,3], [2,3], [1,2,3], []]
-   public static List<List<Integer>> subsets(int[] nums) {
+   private static List<List<Integer>> subsets(int[] nums) {
       List<List<Integer>> result = new ArrayList<>();
       //Arrays.sort(nums);
       backtrack(result, new ArrayList<>(), nums, 0);

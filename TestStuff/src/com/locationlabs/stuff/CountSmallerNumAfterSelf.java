@@ -2,6 +2,7 @@ package com.locationlabs.stuff;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -14,14 +15,13 @@ public class CountSmallerNumAfterSelf {
       }
 
       final BST bst = new BST();
-      final List<Integer> result = new ArrayList<>();
+      final LinkedList<Integer> result = new LinkedList<>();
 
       for (int i = nums.length - 1; i >= 0; i--) {
          int count = bst.insert(nums[i]);
-         result.add(count);
+         result.addFirst(count);
       }
 
-      Collections.reverse(result);
       return result;
    }
 
@@ -40,26 +40,27 @@ public class CountSmallerNumAfterSelf {
    private static class BST {
       private TreeNode root;
 
-      private int insert(int key) {
+      private int insert(int val) {
          if (root == null) {
-            root = new TreeNode(key);
+            root = new TreeNode(val);
             return 0;
          }
 
          TreeNode curr = root;
          int count = 0;
+
          while (true) {
-            if (key <= curr.val) {
+            if (val <= curr.val) {
                curr.count++;
                if (curr.left == null) {
-                  curr.left = new TreeNode(key);
+                  curr.left = new TreeNode(val);
                   break;
                }
                curr = curr.left;
             } else {
                count += curr.count;
-               if (curr.right == null) {
-                  curr.right = new TreeNode(key);
+               if(curr.right == null) {
+                  curr.right = new TreeNode(val);
                   break;
                }
                curr = curr.right;

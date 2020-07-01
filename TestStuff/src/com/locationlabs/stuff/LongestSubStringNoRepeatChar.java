@@ -15,18 +15,24 @@ public class LongestSubStringNoRepeatChar {
          return 0;
       }
 
-      int lastOccurance = 0, max = 0;
       final Map<Character, Integer> map = new HashMap<>();
-      for (int i = 0; i < s.length(); i++) {
-         char ch = s.charAt(i);
+      final int len = s.length();
+      int left = 0, right = 0;
+      int maxLen = 0;
+
+      while (right < len) {
+         final char ch = s.charAt(right);
          if (map.containsKey(ch)) {
-            lastOccurance = Math.max(map.get(ch), lastOccurance);
+            if (map.get(ch) >= left) {
+               left = map.get(ch) + 1;
+            }
          }
-         max = Math.max(max, i - lastOccurance + 1);
-         map.put(ch, i + 1);
+
+         maxLen = Math.max(maxLen, right - left + 1);
+         map.put(ch, right++);
       }
 
-      return max;
+      return maxLen;
    }
 
    public static void main(String[] args) {

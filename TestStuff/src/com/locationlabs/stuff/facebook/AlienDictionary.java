@@ -38,8 +38,12 @@ public class AlienDictionary {
                   set.add(ch2);
                   map.put(ch1, set);
                   degree.put(ch2, degree.get(ch2) + 1);
+                  break;
                }
-               break;
+            }
+
+            if (j == word2.length() - 1 && word1.length() > word2.length()) {
+               return "Empty";
             }
          }
       }
@@ -65,15 +69,13 @@ public class AlienDictionary {
          }
       }
 
-      if (result.length() != degree.size()) {
-         return "result is empty";
-      }
-      return result.toString();
+      return result.length() != degree.size() ? "Empty" : result.toString();
    }
 
    public static void main(String[] args) {
       System.out.println(alienOrder(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
-      /*System.out.println(alienOrder(new String[]{"z", "x"}));
-      System.out.println(alienOrder(new String[]{"z", "x", "z"}));*/
+      System.out.println(alienOrder(new String[]{"abc", "ab"}));
+      System.out.println(alienOrder(new String[]{"z", "x"}));
+      System.out.println(alienOrder(new String[]{"z", "x", "z"}));
    }
 }

@@ -15,11 +15,14 @@ public class PerfectSquares {
             dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
          }
       }
+
+      System.out.println(Arrays.toString(dp));
+
       return dp[n];
    }
 
    public static void main(String[] args) {
       System.out.println(numSquares(12));
-      System.out.println(numSquares(13));
+      //System.out.println(numSquares(13));
    }
 }

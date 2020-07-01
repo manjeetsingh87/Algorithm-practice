@@ -19,15 +19,16 @@ public class IntegerToWord {
          if (num % 1000 != 0) {
             words = helper(num % 1000) + THOUSANDS[i] + " " + words;
          }
+
          num /= 1000;
          i++;
       }
+
       return words.trim();
    }
-
    private static String helper(int num) {
       if (num == 0) {
-         return "";
+         return LESS_THAN_20[0];
       } else if (num < 20) {
          return LESS_THAN_20[num] + " ";
       } else if (num < 100) {
@@ -38,10 +39,9 @@ public class IntegerToWord {
    }
 
    public static void main(String[] args) {
-      System.out.println(numberToWords(20));
       System.out.println(numberToWords(123));
-      System.out.println(numberToWords(12345));
-      System.out.println(numberToWords(1234567));
-      System.out.println(numberToWords(1234567891));
+//      System.out.println(numberToWords(12345));
+//      System.out.println(numberToWords(1234567));
+//      System.out.println(numberToWords(1234567891));
    }
 }

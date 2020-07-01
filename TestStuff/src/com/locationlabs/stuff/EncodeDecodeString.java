@@ -9,11 +9,11 @@ import java.util.List;
  */
 public class EncodeDecodeString {
    private static String encode(List<String> strs) {
-      StringBuilder sb = new StringBuilder();
       if (strs == null || strs.isEmpty()) {
-         return sb.toString();
+         return null;
       }
 
+      StringBuilder sb = new StringBuilder();
       for (String str : strs) {
          sb.append(str.length()).append('/').append(str);
       }
@@ -42,5 +42,9 @@ public class EncodeDecodeString {
       System.out.println(encode);
       List<String> decode = decode(encode);
       System.out.println(decode);
+
+      String encoded = encode(Arrays.asList("Hello", "World"));
+      System.out.println(encoded);
+      System.out.println(decode(encoded));
    }
 }

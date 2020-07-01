@@ -3,6 +3,7 @@ package com.locationlabs.stuff;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -17,19 +18,18 @@ public class SerializeDeserializeBTree {
 
       final StringBuilder sb = new StringBuilder();
       final String nullNode = "null";
-      final Stack<TreeNode> stack = new Stack<>();
-      stack.push(root);
-      while (!stack.isEmpty()) {
-         final TreeNode curr = stack.pop();
+      final Queue<TreeNode> queue = new LinkedList<>();
+      queue.offer(root);
+      while (!queue.isEmpty()) {
+         final TreeNode curr = queue.poll();
          if (curr == null) {
             sb.append(nullNode).append(",");
             continue;
-         } else {
-            sb.append(curr.val).append(",");
          }
 
-         stack.push(curr.right);
-         stack.push(curr.left);
+         sb.append(curr.val).append(",");
+         queue.offer(curr.left);
+         queue.offer(curr.right);
       }
 
       return sb.toString();
@@ -41,21 +41,29 @@ public class SerializeDeserializeBTree {
          return null;
       }
 
-      final Deque<String> nodes = new LinkedList<>();
-      nodes.addAll(Arrays.asList(data.split(",")));
-      return deserializeBTree(nodes);
-   }
+      final Queue<TreeNode> queue = new LinkedList<>();
+      String[] values = data.split(",");
+      final String nullNode = "null";
+      TreeNode root = new TreeNode(Integer.parseInt(values[0]));
 
-   private static TreeNode deserializeBTree(Deque<String> nodes) {
-      final String current = nodes.remove();
-      if (current.equals("null")) {
-         return null;
+      queue.offer(root);
+
+      for (int i = 1; i < values.length; i++) {
+         final TreeNode parent = queue.poll();
+         if (!values[i].equals(nullNode)) {
+            final TreeNode left = new TreeNode(Integer.parseInt(values[i]));
+            parent.left = left;
+            queue.offer(left);
+         }
+
+         if (!values[++i].equals(nullNode)) {
+            final TreeNode right = new TreeNode(Integer.parseInt(values[i]));
+            parent.right = right;
+            queue.offer(right);
+         }
       }
 
-      final TreeNode node = new TreeNode(Integer.parseInt(current));
-      node.left = deserializeBTree(nodes);
-      node.right = deserializeBTree(nodes);
-      return node;
+      return root;
    }
 
    public static void main(String[] args) {

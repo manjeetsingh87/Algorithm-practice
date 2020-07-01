@@ -10,7 +10,7 @@ import java.util.Queue;
  * Created by manjeet.singh on 5/2/19.
  */
 public class LevelOrderTraversal {
-   private static List<List<Integer>> levelOrder(TreeNode root) {
+   public static List<List<Integer>> levelOrder(TreeNode root) {
       List<List<Integer>> result = new ArrayList<>();
 
       if (root == null) {
@@ -49,7 +49,7 @@ public class LevelOrderTraversal {
       return result;
    }
 
-   private static List<List<Integer>> levelOrderBotton(TreeNode root) {
+   private static List<List<Integer>> levelOrderBottom(TreeNode root) {
       LinkedList<List<Integer>> result = new LinkedList<>();
 
       if (root == null) {
@@ -129,6 +129,6 @@ public class LevelOrderTraversal {
 
       /*System.out.println(levelOrder(root));
       System.out.println(levelOrderTraversal(root));*/
-      System.out.println(levelOrderBotton(root));
+      System.out.println(levelOrderBottom(root));
    }
 }

@@ -15,7 +15,8 @@ public class KthSmallestInSortedMatrix {
       int low = matrix[0][0], high = matrix[len - 1][len - 1];
       while (low <= high) {
          int mid = (low + high) / 2;
-         int count = getLessEqual(matrix, mid);
+         int count = getLessEqual(matrix, mid, len);
+
          if (count < k) {
             low = mid + 1;
          } else {
@@ -25,18 +26,20 @@ public class KthSmallestInSortedMatrix {
       return low;
    }
 
-   private static int getLessEqual(int[][] matrix, int val) {
-      int result = 0;
-      int n = matrix.length, i = n - 1, j = 0;
-      while (i >= 0 && j < n) {
-         if (matrix[i][j] > val) {
-            i--;
+   private static int getLessEqual(int[][] matrix, int val, int len) {
+      int count = 0;
+      int left = len - 1, right = 0;
+
+      while (left >= 0 && right < len) {
+         if (matrix[left][right] > val) {
+            left--;
          } else {
-            result += i + 1;
-            j++;
+            count += left + 1;
+            right++;
          }
       }
-      return result;
+
+      return count;
    }
 
    private static int kthSmallestApproach2(int[][] matrix, int k) {
@@ -44,8 +47,9 @@ public class KthSmallestInSortedMatrix {
 
       final PriorityQueue<Tuple> pq = new PriorityQueue<Tuple>();
 
-      for(int j = 0; j <= n-1; j++) {
-         pq.offer(new Tuple(0, j, matrix[0][j]));
+      // start with all elements in first row
+      for(int col = 0; col <= n-1; col++) {
+         pq.offer(new Tuple(0, col, matrix[0][col]));
       }
 
       for(int i = 0; i < k-1; i++) {
@@ -55,6 +59,7 @@ public class KthSmallestInSortedMatrix {
          }
          pq.offer(new Tuple(tuple.x + 1, tuple.y, matrix[tuple.x + 1][tuple.y]));
       }
+
       return pq.poll().val;
    }
 

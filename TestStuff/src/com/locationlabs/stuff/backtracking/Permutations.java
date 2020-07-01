@@ -13,32 +13,36 @@ import java.util.List;
 public class Permutations {
    private static List<List<Integer>> permute(int[] nums) {
       List<List<Integer>> result = new ArrayList<>();
-      backtrack(result, new ArrayList<>(), nums);
+      backtrack(result, new ArrayList<>(), nums, new boolean[nums.length]);
       return result;
    }
 
-   private static void backtrack(List<List<Integer>> result, List<Integer> permutation, int[] nums) {
+   private static void backtrack(List<List<Integer>> result, List<Integer> permutation, int[] nums, boolean[] used) {
       if (permutation.size() == nums.length) {
          result.add(new ArrayList<>(permutation));
          return;
       }
-      for (int num : nums) {
-         if (!permutation.contains(num)) {
-            permutation.add(num);
-            backtrack(result, permutation, nums);
-            permutation.remove(permutation.size() - 1);
+      for (int i = 0; i < nums.length; i++) {
+         if (used[i]) {
+            continue;
          }
+
+         used[i] = true;
+         permutation.add(nums[i]);
+         backtrack(result, permutation, nums, used);
+         used[i] = false;
+         permutation.remove(permutation.size() - 1);
       }
    }
 
    private static List<List<Integer>> permuteII(int[] nums) {
       List<List<Integer>> result = new ArrayList<>();
       Arrays.sort(nums);
-      backtrack(result, new ArrayList<>(), nums, new boolean[nums.length]);
+      backtrackII(result, new ArrayList<>(), nums, new boolean[nums.length]);
       return result;
    }
 
-   private static void backtrack(List<List<Integer>> result, List<Integer> permutation, int[] nums, boolean[] visited) {
+   private static void backtrackII(List<List<Integer>> result, List<Integer> permutation, int[] nums, boolean[] visited) {
       if (permutation.size() == nums.length) {
          result.add(permutation);
          return;
@@ -58,7 +62,7 @@ public class Permutations {
 
 
    public static void main(String[] args) {
-//      System.out.println(permute(new int[]{1,2,3}));
-      System.out.println(permuteII(new int[]{1,1,3}));
+      System.out.println(permute(new int[]{1,2,3}));
+//      System.out.println(permuteII(new int[]{1,1,3}));
    }
 }

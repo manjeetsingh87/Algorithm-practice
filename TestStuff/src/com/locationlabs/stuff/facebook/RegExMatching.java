@@ -25,10 +25,6 @@ public class RegExMatching {
          }
       }
 
-      for (int i = 0; i < dp.length; i++) {
-         System.out.println(Arrays.toString(dp[i]));
-      }
-
       for (int i = 1 ; i <= sLen; i++) {
          for (int j = 1; j <= pLen; j++) {
             if (p.charAt(j - 1) == '.' || (p.charAt(j - 1) == s.charAt(i - 1))) {
@@ -37,21 +33,18 @@ public class RegExMatching {
                if (p.charAt(j - 2) != s.charAt(i - 1) && p.charAt(j - 2) != '.') {
                   dp[i][j] = dp[i][j - 2];
                } else {
-                  dp[i][j] = dp[i][j - 1] || dp[i - 1][j] || dp[i][j-2];
+                  dp[i][j] = dp[i][j - 1] || dp[i - 1][j] || dp[i][j - 2];
                }
             }
          }
       }
-
-      /*for (int i = 0; i < dp.length; i++) {
-         System.out.println(Arrays.toString(dp[i]));
-      }*/
 
       return dp[sLen][pLen];
    }
 
    public static void main(String[] args) {
       System.out.println(isMatch("aab", "c*a*b"));
+      System.out.println(isMatch("a", "a*"));
       /*System.out.println(isMatch("aa", "a"));
       System.out.println(isMatch("aa", "a*"));
       System.out.println(isMatch("ab", ".*"));

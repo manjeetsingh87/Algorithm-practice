@@ -11,7 +11,8 @@ public class BasicCalculatorII {
 
       int sum = 0, prevNum = 0;
       char prevOp = '+';
-      for (int i = 0; i < s.length(); i++) {
+      final int len = s.length();
+      for (int i = 0; i < len; i++) {
          char ch = s.charAt(i);
          if (ch == ' ') {
             continue;
@@ -19,10 +20,11 @@ public class BasicCalculatorII {
 
          if (Character.isDigit(ch)) {
             int val = ch - '0';
-            while (i + 1 < s.length() && Character.isDigit(s.charAt(i + 1))) {
-               val = val * 10 + (s.charAt(i + 1) - '0');
+            while (i + 1 < len && Character.isDigit(s.charAt(i + 1))) {
+               val = (val * 10) + (s.charAt(i + 1) - '0');
                i++;
             }
+
             if (prevOp == '+') {
                sum += prevNum;
                prevNum = val;
@@ -43,6 +45,6 @@ public class BasicCalculatorII {
    }
 
    public static void main(String[] args) {
-      System.out.println(calculate("3/2"));
+      System.out.println(calculate("3+2*2"));
    }
 }

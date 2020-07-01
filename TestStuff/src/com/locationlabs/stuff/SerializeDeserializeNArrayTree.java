@@ -41,7 +41,7 @@ public class SerializeDeserializeNArrayTree {
          return null;
       }
 
-      String[] nodes = data.trim().split(" ");
+      String[] nodes = data.trim().split("\\s");
       final Deque<Node> stack = new ArrayDeque<>();
       Node root = new Node(Integer.parseInt(nodes[0]), new ArrayList<Node>());
       Node current = root;

@@ -28,8 +28,11 @@ public class RemoveKDigits {
 
       final StringBuilder sb = new StringBuilder();
       while (!stack.isEmpty()) {
-         sb.insert(0, stack.pop());
+         sb.append(stack.pop());
       }
+
+      sb.reverse();
+
       while (sb.length() > 1 && sb.charAt(0) == '0') {
          sb.deleteCharAt(0);
       }
@@ -37,8 +40,8 @@ public class RemoveKDigits {
    }
 
    public static void main(String[] args) {
-      System.out.println(removeKdigits("1432219", 3));
-      System.out.println(removeKdigits("10200", 1));
+//      System.out.println(removeKdigits("1432219", 3));
+//      System.out.println(removeKdigits("10200", 1));
       System.out.println(removeKdigits("10", 2));
    }
 }

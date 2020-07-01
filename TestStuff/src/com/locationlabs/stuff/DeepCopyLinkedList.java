@@ -29,7 +29,7 @@ public class DeepCopyLinkedList {
       while (current != null) {
          Node dup = current.next;
          current.next = new Node(current.val, dup, null);
-         current =  dup;
+         current = dup;
       }
 
       current = head;

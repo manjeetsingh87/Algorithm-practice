@@ -2,7 +2,10 @@ package com.locationlabs.stuff.dropbox;
 
 import static com.locationlabs.stuff.dropbox.AddTwoNumbers.ListNode;
 
+import com.locationlabs.stuff.ReverseLinkedList;
 import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * Created by manjeet.singh on 7/21/19.
@@ -60,6 +63,34 @@ public class MergeKSortedLists {
       return result.next;
    }
 
+   private static ListNode mergeKSortedLists(ListNode[] lists) {
+      if (lists == null || lists.length == 0) {
+         return null;
+      }
+
+      final int size = lists.length;
+      final Queue<ListNode> pq = new PriorityQueue<>(size, (a, b) -> a.val - b.val);
+
+      for (ListNode list : lists) {
+         if (list != null) {
+            pq.offer(list);
+         }
+      }
+
+      ListNode result = new ListNode(0);
+      ListNode dummy = result;
+      while (!pq.isEmpty()) {
+         dummy.next = pq.poll();
+         dummy = dummy.next;
+
+         if (dummy.next != null) {
+            pq.offer(dummy.next);
+         }
+      }
+
+      return result.next;
+   }
+
    public static void main(String[] args) {
       ListNode l1 = new ListNode(1);
       l1.next = new ListNode(4);
@@ -69,7 +100,7 @@ public class MergeKSortedLists {
       l2.next = new ListNode(3);
       l2.next.next = new ListNode(5);
 
-      print(mergeKLists(new ListNode[]{l1, l2}));
+      print(mergeKSortedLists(new ListNode[]{l1, l2}));
    }
 
    private static void print(ListNode result) {

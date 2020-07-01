@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collector;
 
 /**
  * Created by manjeet.singh on 6/3/19.
@@ -17,26 +18,21 @@ public class CourseScheduleII {
          graph[i] = new ArrayList<>();
       }
 
-      for (int i = 0; i < prerequisites.length; i++) {
-         graph[prerequisites[i][1]].add(prerequisites[i][0]);
+      for (int[] prerequisite : prerequisites) {
+         graph[prerequisite[1]].add(prerequisite[0]);
       }
 
-      Deque<Integer> queue = new LinkedList<>();
+      LinkedList<Integer> courseOrder = new LinkedList<>();
       boolean[] visited = new boolean[numCourses];
       boolean[] finished = new boolean[numCourses];
 
       for (int i = 0; i < numCourses; i++) {
-         if (dfs(graph, visited, finished, queue, i)) {
+         if (dfs(graph, visited, finished, courseOrder, i)) {
             return new int[0];
          }
       }
 
-      int[] output = new int[numCourses];
-      int index = 0;
-      while (!queue.isEmpty()) {
-         output[index++] = queue.pollFirst();
-      }
-      return output;
+      return courseOrder.stream().mapToInt(i -> i).toArray();
    }
 
    private static boolean dfs(List<Integer>[] graph,
@@ -60,7 +56,7 @@ public class CourseScheduleII {
       }
 
       visited[course] = true;
-      queue.offerFirst(course);
+      queue.addFirst(course);
       return false;
    }
 

@@ -1,6 +1,9 @@
 package com.locationlabs.stuff;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -8,16 +11,16 @@ import java.util.Set;
  */
 public class NoOfIslands {
 
-   private static int numIslands(char[][] grid) {
-      if (grid == null || grid.length == 0) {
+   private static int numIslands(List<List<Integer>> grid) {
+      if (grid == null || grid.isEmpty()) {
          return 0;
       }
 
       int count = 0;
 
-      for (int i = 0; i < grid.length; i++) {
-         for (int j = 0; j < grid[0].length; j++) {
-            if (grid[i][j] == '1') {
+      for (int i = 0; i < grid.size(); i++) {
+         for (int j = 0; j < grid.get(i).size(); j++) {
+            if (grid.get(i).get(j) == 1) {
                findConnectedIslands(grid, i, j);
                count++;
             }
@@ -27,13 +30,13 @@ public class NoOfIslands {
       return count;
    }
 
-   private static void findConnectedIslands(char[][] grid, int rowStart, int colStart) {
-      if (rowStart < 0 || rowStart >= grid.length || colStart < 0 ||
-              colStart >= grid[0].length || grid[rowStart][colStart] != '1') {
+   private static void findConnectedIslands(List<List<Integer>> grid, int rowStart, int colStart) {
+      if (rowStart < 0 || rowStart >= grid.size() || colStart < 0 ||
+              colStart >= grid.get(0).size() || grid.get(rowStart).get(colStart) != 1) {
          return;
       }
 
-      grid[rowStart][colStart] = '0';
+      grid.get(rowStart).set(colStart, 0);
       findConnectedIslands(grid, rowStart+1, colStart);
       findConnectedIslands(grid, rowStart-1, colStart);
       findConnectedIslands(grid, rowStart, colStart+1);
@@ -73,19 +76,20 @@ public class NoOfIslands {
    }
 
    public static void main(String[] args) {
-      /*char[][] grid = new char[][]{
-              {'1', '1', '1', '1', '0'},
-              {'1', '1', '0', '1', '0'},
-              {'1', '1', '0', '0', '0'},
-              {'0', '0', '0', '0', '0'}
-      };*/
+      List<List<Integer>> matrix = new ArrayList<>();
+      matrix.add(0, Arrays.asList(1, 1, 0, 0, 0));
+      matrix.add(0, Arrays.asList(0, 0, 0, 1, 0));
+      matrix.add(0, Arrays.asList(1, 1, 0, 0, 1));
+      matrix.add(0, Arrays.asList(1, 1, 1, 1, 1));
 
-//      System.out.println(numIslands(grid));
+      System.out.println(numIslands(matrix));
 
-//      char[][] grid = new char[][]{{'0', '1', '0'}, {'1', '0', '1'}, {'0', '1', '0'}};
-//      System.out.println(numIslands(grid));
+      /*char[][] grid = new char[][]{{'0', '1', '0'}, {'1', '0', '1'}, {'0', '1', '0'}};
+      System.out.println(numIslands(grid));*/
 
-      int[][] grid2 = new int[][]{{1,1,0,1,1},{1,0,0,0,0},{0,0,0,0,1},{1,1,0,1,1}};
-      System.out.println(new NoOfIslands().numDistinctIslands(grid2));
+      /*int[][] grid2 = new int[][]{{1,1,0,1,1},{1,0,0,0,0},{0,0,0,0,1},{1,1,0,1,1}};
+      System.out.println(new NoOfIslands().numDistinctIslands(grid2));*/
+
+
    }
 }

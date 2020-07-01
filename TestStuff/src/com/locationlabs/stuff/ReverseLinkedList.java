@@ -26,7 +26,6 @@ public class ReverseLinkedList {
          current = temp;
       }
 
-
       return prev;
    }
 
@@ -44,8 +43,8 @@ public class ReverseLinkedList {
    }
 
    private static ListNode reverseBetween(ListNode head, int m, int n) {
-      if (head == null) {
-         return null;
+      if (head == null || head.next == null || n <= m) {
+         return head;
       }
 
       ListNode dummy = new ListNode(0);
@@ -71,7 +70,7 @@ public class ReverseLinkedList {
       prev.next = newPrev;
       curr.next = newCurr;
 
-      return dummy.next;
+      return dummy;
    }
 
    private static ListNode reverseKGroup(ListNode head, int k) {

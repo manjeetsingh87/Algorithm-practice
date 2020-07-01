@@ -9,7 +9,7 @@ import java.util.Stack;
  */
 public class BTreeInorder {
 
-   private static List<Integer> inorderTraversal(TreeNode root) {
+   public static List<Integer> inorderTraversal(TreeNode root) {
       final List<Integer> result = new ArrayList<>();
 
       if (root == null) {
@@ -33,11 +33,12 @@ public class BTreeInorder {
    }
 
    public static void main(String[] args) {
-      TreeNode root = new TreeNode(1);
-      root.left = new TreeNode(2);
-      root.right = new TreeNode(3);
-      root.left.left = new TreeNode(4);
-      root.left.right = new TreeNode(5);
+      TreeNode root = new TreeNode(5);
+      root.left = new TreeNode(3);
+      root.left.left = new TreeNode(2);
+      root.left.left.left = new TreeNode(1);
+      root.left.right = new TreeNode(4);
+      root.right = new TreeNode(6);
 
       System.out.println(inorderTraversal(root));
    }
